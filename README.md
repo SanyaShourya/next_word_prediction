@@ -50,3 +50,47 @@ Sequential([
     LSTM(units),
     Dense(vocab_size, activation='softmax')
 ])
+
+## 🔄 Training
+
+The model was trained on a cleaned dataset of quotes using an LSTM-based neural network. Key training steps included:
+
+- **Data Preparation**:
+  - Lowercased all text
+  - Removed all non-alphabetic characters
+  - Tokenized text into word-level sequences
+  - Created input sequences where each sequence predicts the next word
+
+- **Model Details**:
+  - Embedding layer to map words to dense vectors
+  - LSTM layer to capture context and sequential information
+  - Dense layer with softmax to predict the next word from the vocabulary
+
+- **Training Parameters**:
+  - Optimizer: `Adam`
+  - Loss Function: `Categorical Crossentropy`
+  - Batch Size: `128`
+  - Epochs: `30`
+  - Vocabulary size: `Limited to avoid memory issues`
+  - Environment: Trained using **Google Colab** with GPU enabled
+
+---
+
+## 📊 Results
+
+- Achieved a **training accuracy of ~66%**
+- Final loss: **~1.5**
+- Model successfully predicts next 15 words after a given starting phrase
+- Handles unknown words using `<UNK>` token
+- Avoids overfitting by managing sequence length and vocabulary size
+
+---
+
+## 🧠 Example Usage
+
+You can generate next words interactively by entering a prompt:
+
+```bash
+Enter a starting phrase: life is
+Predicted continuation: life is a journey that must be embraced with courage and hope
+
