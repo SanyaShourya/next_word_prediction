@@ -1,96 +1,66 @@
 # 🧠 Next Word Prediction using LSTM (TensorFlow)
 
-This project implements a deep learning model to predict the **next word(s)** in a given sentence using **LSTM (Long Short-Term Memory)** networks. The model is trained on a dataset of quotes and can predict up to **15 words** ahead.
+This project is a word-level **Next Word Prediction Model** built using **TensorFlow and LSTM** on a dataset of quotes. The model learns the context of words in sentences and predicts the next word(s) based on a given input phrase.
 
 ---
 
-## 🚀 Project Highlights
+## 📁 Dataset
 
-- Cleaned and preprocessed a large text dataset of quotes
-- Tokenized text and created input sequences for training
-- Built and trained an LSTM-based neural network using TensorFlow/Keras
-- Handled large vocabularies by limiting vocabulary size
-- Implemented word prediction loop to generate multiple words
-- Achieved ~66% training accuracy
-- Trained on Google Colab with GPU support without crashing
+- A collection of motivational and philosophical quotes.
+- Text cleaned to remove non-alphabet characters and converted to lowercase.
 
 ---
 
-## 📂 Dataset
+## ⚙️ Features
 
-- **Type**: Collection of famous quotes
-- **Format**: Text file with one quote per line
-- **Preprocessing**:
-  - Lowercased all text
-  - Removed non-alphabet characters
-  - Tokenized sentences into words
-  - Limited vocabulary size (to avoid memory issues)
+- Word-level tokenization (custom tokenizer)
+- Vocabulary size is limited for efficient memory usage
+- LSTM-based model trained to predict next word
+- Capable of generating **up to 15 words** after an input phrase
+- Handled completely on **Google Colab GPU**
 
 ---
 
-## 🛠️ Technologies Used
+## 🧪 Training
 
-- Python 3
-- TensorFlow / Keras
-- NumPy
-- Matplotlib
-- Google Colab (GPU runtime)
+The model was trained with the following setup:
 
----
+- **Text Preprocessing**:
+  - Converted to lowercase
+  - Removed all non-alphabetic characters using regex
+  - Tokenized to word-level sequences
+  - Generated n-gram sequences to predict the next word
 
-## 📊 Model Architecture
+- **Model Architecture**:
+  - Embedding Layer
+  - LSTM Layer
+  - Dense Layer with Softmax Activation
 
-- **Embedding Layer**: Converts word indices to dense vectors  
-- **LSTM Layer**: Learns temporal dependencies in sequences  
-- **Dense Layer (Softmax)**: Outputs probability distribution over vocabulary  
-
-```python
-Sequential([
-    Embedding(input_dim=vocab_size, output_dim=embedding_dim),
-    LSTM(units),
-    Dense(vocab_size, activation='softmax')
-])
-
-## 🔄 Training
-
-The model was trained on a cleaned dataset of quotes using an LSTM-based neural network. Key training steps included:
-
-- **Data Preparation**:
-  - Lowercased all text
-  - Removed all non-alphabetic characters
-  - Tokenized text into word-level sequences
-  - Created input sequences where each sequence predicts the next word
-
-- **Model Details**:
-  - Embedding layer to map words to dense vectors
-  - LSTM layer to capture context and sequential information
-  - Dense layer with softmax to predict the next word from the vocabulary
-
-- **Training Parameters**:
+- **Parameters**:
   - Optimizer: `Adam`
-  - Loss Function: `Categorical Crossentropy`
-  - Batch Size: `128`
+  - Loss Function: `categorical_crossentropy`
   - Epochs: `30`
-  - Vocabulary size: `Limited to avoid memory issues`
-  - Environment: Trained using **Google Colab** with GPU enabled
+  - Batch Size: `128`
+  - Vocabulary Size: Limited (to avoid crashing Colab sessions)
+
+- **Framework**: TensorFlow (Keras API)
 
 ---
 
 ## 📊 Results
 
-- Achieved a **training accuracy of ~66%**
-- Final loss: **~1.5**
-- Model successfully predicts next 15 words after a given starting phrase
-- Handles unknown words using `<UNK>` token
-- Avoids overfitting by managing sequence length and vocabulary size
+- Achieved **66% accuracy**
+- Final training loss ~ **1.5**
+- Predicts **next 15 words** with decent semantic continuity
+- Unknown words are handled using the `<UNK>` token
 
 ---
 
-## 🧠 Example Usage
+## 🚀 Example Usage
 
-You can generate next words interactively by entering a prompt:
+After training, run the prediction code and provide an input phrase:
 
-```bash
+```python
 Enter a starting phrase: life is
 Predicted continuation: life is a journey that must be embraced with courage and hope
 
